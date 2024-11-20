@@ -48,4 +48,13 @@ public class FavoriteService {
 
     }
 
+    public Favorite remove(long roomId, long favoriteId) throws ExecutionException, InterruptedException {
+        Favorite favorite = favoriteRepository.findById(favoriteId).orElseThrow(null);
+        Room room = roomRepository.findById(roomId).orElseThrow(null);
+        favorite.getRooms().remove(room);
+        favoriteRepository.save(favorite);
+        return favorite;
+
+    }
+
 }

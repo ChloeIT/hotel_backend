@@ -41,5 +41,11 @@ public class FavoriteController {
         return  ResponseEntity.ok(favorite);
     }
 
+    @PostMapping("/{favoriteId}/remove/{roomId}")
+    public ResponseEntity<?> remove(@PathVariable long favoriteId, @PathVariable long roomId) throws ExecutionException, InterruptedException {
+        Favorite favorite = favoriteService.remove(roomId, favoriteId);
+        return  ResponseEntity.ok(favorite);
+    }
+
 }
 
